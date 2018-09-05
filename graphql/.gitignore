@@ -1,0 +1,17 @@
+# editors
+.idea
+
+# build
+dist
+
+# dependencies
+**/node_modules/**
+
+# misc
+.DS_Store
+.env*
+!.env-sample
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
