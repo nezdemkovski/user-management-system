@@ -44,7 +44,7 @@ query currentUser {
 
 ```
 mutation signInUser {
-  signInUser(email: "hi@mynameisyuri.com", password: "testpass") {
+  signInUser(email: "test@test.comm", password: "testpass") {
     token
     user {
       id
@@ -58,7 +58,7 @@ mutation createUser {
   createUser(
     firstName: "Yuri"
     lastName: "Yakovlev"
-    email: "hi@mynameisyuri.com"
+    email: "test@test.com"
     password: "testpass"
     role: ADMIN
     profilePictureUrl: "https://avatars1.githubusercontent.com/u/4764539"
@@ -79,7 +79,7 @@ mutation updateUser {
     update: {
       firstName: "Yuri"
       lastName: "Yakovlev"
-      email: "hi@mynameisyuri.com"
+      email: "test@test.com"
       password: "testpass"
       role: EDITOR
       profilePictureUrl: "https://avatars1.githubusercontent.com/u/4764539"
