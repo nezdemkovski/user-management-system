@@ -1,7 +1,9 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 
-import { getUserId, getUserRole, Context } from '../../utils';
-import GraphQLUser, { User } from '../outputs/User';
+import { Context } from '../../../graphql';
+import { UserModel } from '../../db/models/User';
+import { getUserId, getUserRole } from '../../utils';
+import GraphQLUser from '../outputs/User';
 
 interface Args {
   id: string;
@@ -17,13 +19,13 @@ export default {
   resolve: async (
     _: any,
     { id }: Args,
-    { apiToken, db }: Context,
-  ): Promise<User> => {
+    { apiToken, models }: Context,
+  ): Promise<UserModel> => {
     const userId = getUserId(apiToken);
-    const userRole = await getUserRole(userId, db);
+    const userRole = await getUserRole(userId, models);
 
     if (userRole === 'ADMIN') {
-      const deletedUser = await db.user.findOneAndDelete({ _id: id });
+      const deletedUser = await models.User.findOneAndRemove({ _id: id });
       if (!deletedUser) {
         throw new Error('No such user found!');
       }

@@ -1,7 +1,15 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 
-import { Context } from '../../utils';
-import GraphQLUser, { User } from '../outputs/User';
+import { Context } from '../../../graphql';
+import {
+  DEV_API_TOKEN,
+  MONGO_DB_NAME,
+  MONGO_PASSWORD,
+  MONGO_URL,
+  MONGO_USERNAME,
+} from '../../config';
+import { UserModel } from '../../db/models/User';
+import GraphQLUser from '../outputs/User';
 
 interface Args {
   id: string;
@@ -14,7 +22,7 @@ export default {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_: any, { id }: Args, { db }: Context): Promise<User> => {
-    return db.user.findOne({ _id: id });
+  resolve: async (_: any, { id }: Args, ctx: Context): Promise<UserModel> => {
+    return ctx.models.User.findOne({ _id: id });
   },
 };

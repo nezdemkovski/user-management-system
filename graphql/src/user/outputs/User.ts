@@ -8,7 +8,7 @@ import {
 import GraphQLUserRole from '../outputs/UserRole';
 import { UserRole } from './UserRole';
 
-export interface User {
+interface User {
   id: string;
   firstName: string;
   lastName: string;

@@ -2,8 +2,9 @@ import * as bcrypt from 'bcryptjs';
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import * as jwt from 'jsonwebtoken';
 
+import { Context } from '../../../graphql';
 import { APP_SECRET } from '../../config';
-import { getUserId, getUserRole, Context } from '../../utils';
+import { getUserId, getUserRole } from '../../utils';
 import GraphQLAuthPayload, { AuthPayload } from '../outputs/AuthPayload';
 import GraphQLUserRole, { UserRole } from '../outputs/UserRole';
 
@@ -41,24 +42,22 @@ export default {
   resolve: async (
     _: any,
     args: Args,
-    { apiToken, db }: Context,
+    { apiToken, models }: Context,
   ): Promise<AuthPayload> => {
     const userId = getUserId(apiToken);
-    const userRole = await getUserRole(userId, db);
+    const userRole = await getUserRole(userId, models);
 
     if (userRole === 'ADMIN' || userRole === 'DEVELOPER') {
-      const checkEmail = await db.user.findOne({ email: args.email });
+      const checkEmail = await models.User.findOne({ email: args.email });
       if (checkEmail) {
         throw new Error(`Email address already in use`);
       }
 
-      const newUser = await db
-        .user({
-          ...args,
-          password: await bcrypt.hash(args.password, 10),
-          active: true,
-        })
-        .save();
+      const newUser = await new models.User({
+        ...args,
+        password: await bcrypt.hash(args.password, 10),
+        active: true,
+      }).save();
 
       return {
         token: jwt.sign({ userId: newUser.id }, APP_SECRET),

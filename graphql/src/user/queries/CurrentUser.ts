@@ -1,17 +1,19 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 
-import { getUserId, Context } from '../../utils';
-import GraphQLUser, { User } from '../outputs/User';
+import { Context } from '../../../graphql';
+import { UserModel } from '../../db/models/User';
+import { getUserId } from '../../utils';
+import GraphQLUser from '../outputs/User';
 
 export default {
   type: GraphQLUser,
   resolve: async (
     _: any,
     Args: any,
-    { apiToken, db }: Context,
-  ): Promise<User> => {
+    { apiToken, models }: Context,
+  ): Promise<UserModel> => {
     const userId = await getUserId(apiToken);
 
-    return db.user.findOne({ _id: userId });
+    return models.User.findOne({ _id: userId });
   },
 };

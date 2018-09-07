@@ -2,8 +2,8 @@ import * as bcrypt from 'bcryptjs';
 import { GraphQLNonNull, GraphQLString } from 'graphql';
 import * as jwt from 'jsonwebtoken';
 
+import { Context } from '../../../graphql';
 import { APP_SECRET } from '../../config';
-import { Context } from '../../utils';
 import GraphQLAuthPayload, { AuthPayload } from '../outputs/AuthPayload';
 
 interface ArgsType {
@@ -24,9 +24,9 @@ export default {
   resolve: async (
     _: any,
     { email, password }: ArgsType,
-    { db }: Context,
+    { models }: Context,
   ): Promise<AuthPayload> => {
-    const user = await db.user.findOne({ email });
+    const user = await models.User.findOne({ email });
 
     if (!user) {
       throw new Error(`No such user found for email: ${email}`);

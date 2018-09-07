@@ -1,10 +1,11 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 
+import { UserModel } from '../../db/models/User';
 import GraphQLUser from './User';
 
 export interface AuthPayload {
   token: string;
-  user: any;
+  user: UserModel;
 }
 
 export default new GraphQLObjectType({

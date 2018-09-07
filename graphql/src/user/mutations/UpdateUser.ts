@@ -6,8 +6,10 @@ import {
   GraphQLString,
 } from 'graphql';
 
-import { getUserId, getUserRole, Context } from '../../utils';
-import GraphQLUser, { User } from '../outputs/User';
+import { Context } from '../../../graphql';
+import { UserModel } from '../../db/models/User';
+import { getUserId, getUserRole } from '../../utils';
+import GraphQLUser from '../outputs/User';
 import GraphQLUserRole, { UserRole } from '../outputs/UserRole';
 
 interface Args {
@@ -59,14 +61,14 @@ export default {
   resolve: async (
     _: any,
     args: Args,
-    { apiToken, db }: Context,
-  ): Promise<User> => {
+    { apiToken, models }: Context,
+  ): Promise<UserModel> => {
     const userId = getUserId(apiToken);
-    const userRole = await getUserRole(userId, db);
+    const userRole = await getUserRole(userId, models);
 
     if (args.update) {
       if (userRole === 'ADMIN' || userRole === 'DEVELOPER') {
-        return db.user.findOneAndUpdate(
+        return models.User.findOneAndUpdate(
           args.id,
           {
             ...args.update,
@@ -78,7 +80,7 @@ export default {
         );
       }
 
-      return db.user.findOneAndUpdate(
+      return models.User.findOneAndUpdate(
         args.id,
         {
           ...(args.update.password && {
