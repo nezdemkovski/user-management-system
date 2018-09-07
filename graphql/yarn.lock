@@ -154,9 +154,9 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/mongoose@^5.2.10":
-  version "5.2.10"
-  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.2.10.tgz#69a1fdf34ea490c68f19a410329e8b6870ffd5a6"
+"@types/mongoose@^5.2.11":
+  version "5.2.11"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.2.11.tgz#0d91473f7874a8ac9d67c253163eeadde96bcb4d"
   dependencies:
     "@types/events" "*"
     "@types/mongodb" "*"

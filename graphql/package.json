@@ -21,7 +21,7 @@
     "@types/bcryptjs": "^2.4.1",
     "@types/dotenv": "^4.0.3",
     "@types/jsonwebtoken": "^7.2.8",
-    "@types/mongoose": "^5.2.10",
+    "@types/mongoose": "^5.2.11",
     "@types/node": "^10.9.4",
     "graphql-cli": "2.16.7",
     "prettier": "^1.14.2",
