@@ -1,10 +1,3 @@
-import Link from 'next/link';
+import SigninBox from '../components/SigninBox';
 
-export default () => (
-  <div>
-    Hello World.{' '}
-    <Link href="/about">
-      <a>About</a>
-    </Link>
-  </div>
-);
+export default () => <SigninBox />;

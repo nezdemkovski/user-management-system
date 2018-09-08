@@ -2,72 +2,30 @@ import { Icon, Layout, Menu } from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 
-const Header = ({ isAuth, userData, signOut }) => (
+interface Props {
+  isAuth: boolean;
+  userData: any;
+  signOut: () => void;
+}
+
+const Header = ({ isAuth, userData, signOut }: Props) => (
   <Layout.Header style={{ width: '100%', background: '#ffffff' }}>
     <Link href="/">
       <div className="logo" />
     </Link>
 
     <Menu theme="light" mode="horizontal" style={{ lineHeight: '64px' }}>
-      <Menu.Item key="newUser">
-        <Link href="/new-user" prefetch>
-          <a>
-            <Icon type="form" theme="outlined" />
-            Add new user
-          </a>
-        </Link>
-      </Menu.Item>
-
-      {!isAuth && (
-        <Menu.Item key="signin">
-          <Link href="/signin" prefetch>
-            <a>
-              <Icon type="mail" theme="outlined" />
-              Sign In
-            </a>
-          </Link>
-        </Menu.Item>
-      )}
-
-      {!isAuth && (
-        <Menu.Item key="signup">
-          <Link href="/create-account" prefetch>
-            <a>
-              <Icon type="mail" theme="outlined" />
-              Sign Up
-            </a>
-          </Link>
-        </Menu.Item>
-      )}
-
-      {isAuth &&
-        userData.role === 'MODERATOR' && (
-          <Menu.Item key="admin">
-            <Link href="/admin" prefetch>
-              <a>
-                <Icon type="dashboard" theme="outlined" />
-                Admin Panel
-              </a>
-            </Link>
-          </Menu.Item>
-        )}
-
       {isAuth && (
         <Menu.SubMenu
           title={
             <span>
               <Icon type="user" theme="outlined" />
-              <span>{`${userData.name} (${userData.email})`}</span>
+              <span>{`${userData.firstName} ${userData.lastName} (${
+                userData.email
+              })`}</span>
             </span>
           }
         >
-          <Menu.Item key="profile">
-            <Icon type="profile" theme="outlined" /> Profile
-          </Menu.Item>
-          <Menu.Item key="settings">
-            <Icon type="setting" theme="outlined" /> Settings
-          </Menu.Item>
-
           <Menu.Item key="signout">
             <a onClick={signOut}>
               <Icon type="poweroff" theme="outlined" />
@@ -76,9 +34,17 @@ const Header = ({ isAuth, userData, signOut }) => (
           </Menu.Item>
         </Menu.SubMenu>
       )}
+
+      {isAuth && (
+        <Menu.Item key="role" disabled>
+          <div className={`role-badge ${userData.role.toLowerCase()}`}>
+            {userData.role}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
 
-    <style jsx global>{`
+    <style jsx>{`
       .logo {
         width: 120px;
         height: 31px;
@@ -86,6 +52,31 @@ const Header = ({ isAuth, userData, signOut }) => (
         margin: 16px 24px 16px 0;
         float: left;
         cursor: pointer;
+      }
+
+      .role-badge {
+        display: inline-block;
+        height: 20px;
+        padding: 0 8px;
+        border-radius: 10px;
+        min-width: 20px;
+        background: #d9d9d9;
+        color: #fff;
+        line-height: 20px;
+        font-size: 12px;
+        box-shadow: 0 0 0 1px #fff;
+      }
+
+      .role-badge.admin {
+        background: #52c41a;
+      }
+
+      .role-badge.developer {
+        background: #1890ff;
+      }
+
+      .role-badge.editor {
+        background: #f5222d;
       }
     `}</style>
   </Layout.Header>
