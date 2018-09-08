@@ -15,24 +15,30 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-class MyApp extends App {
+interface Props {
+  isAuth: boolean;
+  userData: any;
+  children: React.ReactNode;
+}
+
+class MyApp extends App<Props> {
   public static async getInitialProps({ ctx }) {
     const { currentUser } = await checkLoggedIn(ctx.apolloClient);
 
-    // if (ctx.pathname === '/signin' || ctx.pathname === '/create-account') {
-    //   if (currentUser.user) {
-    //     redirect(ctx, '/');
-    //   }
-    // }
+    if (ctx.pathname === '/') {
+      if (currentUser.currentUser) {
+        redirect(ctx, '/dashboard');
+      }
+    }
 
-    // if (ctx.pathname === '/admin') {
-    //   if (isEmpty(currentUser) || currentUser.user.role !== 'MODERATOR') {
-    //     redirect(ctx, '/');
-    //   }
-    // }
+    if (ctx.pathname === '/dashboard') {
+      if (isEmpty(currentUser)) {
+        redirect(ctx, '/');
+      }
+    }
 
-    if (currentUser.user) {
-      return { isAuth: true, userData: currentUser.user };
+    if (currentUser.currentUser) {
+      return { isAuth: true, userData: currentUser.currentUser };
     }
 
     return { isAuth: false, userData: {} };

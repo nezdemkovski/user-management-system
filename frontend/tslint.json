@@ -17,7 +17,8 @@
       "next/link",
       "next/router",
       "next/head",
-      "next/app"
+      "next/app",
+      "next/document"
     ]
   },
   "rulesDirectory": [],

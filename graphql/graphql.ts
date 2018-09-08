@@ -36,7 +36,7 @@ const server = new ApolloServer({
   schema: Schema,
   context: async ({ event }) => {
     return {
-      apiToken: event.headers.Authorization || DEV_API_TOKEN,
+      apiToken: event.headers.authorization || DEV_API_TOKEN,
       ...context,
     };
   },
