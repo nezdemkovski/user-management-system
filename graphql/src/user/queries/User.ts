@@ -22,7 +22,13 @@ export default {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_: any, { id }: Args, ctx: Context): Promise<UserModel> => {
-    return ctx.models.User.findOne({ _id: id });
+  resolve: async (
+    _: any,
+    { id }: Args,
+    { models, db }: Context,
+  ): Promise<UserModel> => {
+    return models.User.findOne({ _id: id }, () => {
+      db.close();
+    });
   },
 };

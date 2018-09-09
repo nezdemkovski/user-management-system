@@ -24,9 +24,11 @@ export default {
   resolve: async (
     _: any,
     { email, password }: ArgsType,
-    { models }: Context,
+    { models, db }: Context,
   ): Promise<AuthPayload> => {
-    const user = await models.User.findOne({ email });
+    const user = await models.User.findOne({ email }, () => {
+      db.close();
+    });
 
     if (!user) {
       throw new Error(`No such user found for email: ${email}`);

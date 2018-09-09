@@ -10,10 +10,12 @@ export default {
   resolve: async (
     _: any,
     Args: any,
-    { apiToken, models }: Context,
+    { apiToken, models, db }: Context,
   ): Promise<UserModel> => {
     const userId = await getUserId(apiToken);
 
-    return models.User.findOne({ _id: userId });
+    return models.User.findOne({ _id: userId }, () => {
+      db.close();
+    });
   },
 };

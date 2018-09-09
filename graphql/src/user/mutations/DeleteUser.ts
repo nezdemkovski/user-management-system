@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLNonNull } from 'graphql';
 
 import { Context } from '../../../graphql';
 import { UserModel } from '../../db/models/User';
@@ -13,13 +13,13 @@ export default {
   type: GraphQLUser,
   args: {
     id: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: new GraphQLNonNull(GraphQLID),
     },
   },
   resolve: async (
     _: any,
     { id }: Args,
-    { apiToken, models }: Context,
+    { apiToken, models, db }: Context,
   ): Promise<UserModel> => {
     const userId = getUserId(apiToken);
     const userRole = await getUserRole(userId, models);
@@ -29,6 +29,8 @@ export default {
       if (!deletedUser) {
         throw new Error('No such user found!');
       }
+
+      db.close();
 
       return deletedUser;
     }

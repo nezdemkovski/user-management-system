@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import {
+  GraphQLBoolean,
   GraphQLInputObjectType,
   GraphQLID,
   GraphQLNonNull,
@@ -24,6 +25,7 @@ interface UpdateUserInput {
   password?: string;
   role?: UserRole;
   profilePictureUrl?: string;
+  active?: boolean;
 }
 
 export default {
@@ -54,6 +56,9 @@ export default {
           profilePictureUrl: {
             type: GraphQLString,
           },
+          active: {
+            type: GraphQLBoolean,
+          },
         },
       }),
     },
@@ -61,7 +66,7 @@ export default {
   resolve: async (
     _: any,
     args: Args,
-    { apiToken, models }: Context,
+    { apiToken, models, db }: Context,
   ): Promise<UserModel> => {
     const userId = getUserId(apiToken);
     const userRole = await getUserRole(userId, models);
@@ -77,6 +82,9 @@ export default {
             }),
           },
           { new: true },
+          () => {
+            db.close();
+          },
         );
       }
 
@@ -88,6 +96,9 @@ export default {
           }),
         },
         { new: true },
+        () => {
+          db.close();
+        },
       );
     }
 

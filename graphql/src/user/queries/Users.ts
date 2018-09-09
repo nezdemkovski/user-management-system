@@ -6,7 +6,13 @@ import GraphQLUser from '../outputs/User';
 
 export default {
   type: new GraphQLList(GraphQLUser),
-  resolve: async (_: any, args: any, ctx: Context): Promise<UserModel[]> => {
-    return ctx.models.User.find();
+  resolve: async (
+    _: any,
+    args: any,
+    { models, db }: Context,
+  ): Promise<UserModel[]> => {
+    return models.User.find({}, () => {
+      db.close();
+    });
   },
 };

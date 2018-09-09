@@ -24,6 +24,8 @@ export const startDB = ({ userName, password, url, dbName }: Connect) => {
   const db = mongoose.connection;
   // tslint:disable-next-line:no-console
   db.on('error', error => console.error(`Connection error: ${error}`));
+
+  return db;
 };
 
 export const models = {
