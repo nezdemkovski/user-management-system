@@ -18,7 +18,7 @@
   "dependencies": {
     "@zeit/next-css": "^0.2.1-canary.2",
     "@zeit/next-typescript": "^1.1.1-canary.3",
-    "antd": "^3.9.1",
+    "antd": "^3.9.2",
     "apollo-boost": "^0.1.15",
     "apollo-link-context": "^1.0.8",
     "apollo-link-http": "^1.5.4",
@@ -28,7 +28,7 @@
     "graphql-tag": "^2.9.2",
     "isomorphic-unfetch": "^2.1.1",
     "lodash": "^4.17.10",
-    "next": "^7.0.0-canary.14",
+    "next": "^7.0.0-canary.15",
     "nprogress": "^0.2.0",
     "react": "^16.5.0",
     "react-apollo": "^2.1.11",
