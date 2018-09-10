@@ -1,4 +1,4 @@
-import { Avatar, Button, List, Modal } from 'antd';
+import { Avatar, List } from 'antd';
 import * as React from 'react';
 
 import CreateUserModal from './CreateUserModal';
@@ -11,26 +11,6 @@ interface Props {
 }
 
 class DashBoard extends React.Component<Props> {
-  public state = { visible: false };
-
-  public showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  public handleOk = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
-  public handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
   public render() {
     const userHasProperRight =
       this.props.currentUser.role === 'ADMIN' ||
@@ -69,20 +49,7 @@ class DashBoard extends React.Component<Props> {
           )}
         />
 
-        {userHasProperRight && (
-          <div className="button-add-user">
-            <Button onClick={this.showModal}>Add new user</Button>
-          </div>
-        )}
-
-        <Modal
-          title="Create New User"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <CreateUserModal />
-        </Modal>
+        {userHasProperRight && <CreateUserModal />}
 
         <style jsx>{`
           .role-badge {
@@ -110,13 +77,6 @@ class DashBoard extends React.Component<Props> {
 
           .role-badge.inactive {
             background: #d9d9d9;
-          }
-
-          .button-add-user {
-            text-align: center;
-            margin-top: 12px;
-            height: 32px;
-            line-height: 32px;
           }
         `}</style>
       </React.Fragment>

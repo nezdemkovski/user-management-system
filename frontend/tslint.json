@@ -12,15 +12,7 @@
       }
     ],
     "object-literal-sort-keys": false,
-    "no-submodule-imports": [
-      true,
-      "next/link",
-      "next/router",
-      "next/head",
-      "next/app",
-      "next/document",
-      "lodash/remove"
-    ]
+    "no-submodule-imports": [false]
   },
   "rulesDirectory": [],
   "linterOptions": {
