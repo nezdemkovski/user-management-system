@@ -39,7 +39,7 @@
     "@types/lodash": "^4.14.116",
     "@types/next": "^6.1.4",
     "@types/nprogress": "^0.0.29",
-    "@types/react": "^16.4.13",
+    "@types/react": "^16.4.14",
     "@types/styled-jsx": "^2.2.5",
     "babel-plugin-import": "^1.8.0",
     "prettier": "^1.14.2",
