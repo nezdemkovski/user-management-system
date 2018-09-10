@@ -74,7 +74,7 @@ export default {
     if (args.update) {
       if (userRole === 'ADMIN' || userRole === 'DEVELOPER') {
         return models.User.findOneAndUpdate(
-          args.id,
+          { _id: args.id },
           {
             ...args.update,
             ...(args.update.password && {
@@ -89,7 +89,7 @@ export default {
       }
 
       return models.User.findOneAndUpdate(
-        args.id,
+        { _id: args.id },
         {
           ...(args.update.password && {
             password: await bcrypt.hash(args.update.password, 10),
