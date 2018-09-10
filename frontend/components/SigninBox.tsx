@@ -13,7 +13,8 @@ const SIGN_IN = gql`
 `;
 
 const SignInBox = ({ client }) => {
-  let email, password;
+  let email;
+  let password;
 
   return (
     <Mutation

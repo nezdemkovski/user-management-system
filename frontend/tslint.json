@@ -18,7 +18,8 @@
       "next/router",
       "next/head",
       "next/app",
-      "next/document"
+      "next/document",
+      "lodash/remove"
     ]
   },
   "rulesDirectory": [],

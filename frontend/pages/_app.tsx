@@ -18,6 +18,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 interface Props {
   isAuth: boolean;
   userData: any;
+  apolloClient: any;
   children: React.ReactNode;
 }
 

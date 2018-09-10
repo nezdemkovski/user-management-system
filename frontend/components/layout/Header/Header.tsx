@@ -37,7 +37,11 @@ const Header = ({ isAuth, userData, signOut }: Props) => (
 
       {isAuth && (
         <Menu.Item key="role" disabled>
-          <div className={`role-badge ${userData.role.toLowerCase()}`}>
+          <div
+            className={`role-badge ${
+              !userData.active ? 'inactive' : userData.role.toLowerCase()
+            }`}
+          >
             {userData.role}
           </div>
         </Menu.Item>
@@ -56,11 +60,8 @@ const Header = ({ isAuth, userData, signOut }: Props) => (
 
       .role-badge {
         display: inline-block;
-        height: 20px;
         padding: 0 8px;
         border-radius: 10px;
-        min-width: 20px;
-        background: #d9d9d9;
         color: #fff;
         line-height: 20px;
         font-size: 12px;
@@ -77,6 +78,10 @@ const Header = ({ isAuth, userData, signOut }: Props) => (
 
       .role-badge.editor {
         background: #f5222d;
+      }
+
+      .role-badge.inactive {
+        background: #d9d9d9;
       }
     `}</style>
   </Layout.Header>

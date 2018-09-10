@@ -9,7 +9,7 @@ interface Props {
   isAuth: boolean;
   userData: any;
   signOut: () => void;
-  children: React.ReactNode;
+  children: JSX.Element;
 }
 
 class LayoutComponent extends React.Component<Props> {
