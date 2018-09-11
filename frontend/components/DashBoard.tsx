@@ -1,4 +1,5 @@
 import { Avatar, List } from 'antd';
+import Link from 'next/link';
 import * as React from 'react';
 
 import CreateUserModal from './CreateUserModal';
@@ -24,7 +25,12 @@ class DashBoard extends React.Component<Props> {
           renderItem={item => (
             <List.Item
               actions={[
-                <a>edit</a>,
+                <Link
+                  prefetch
+                  href={{ pathname: '/user', query: { id: item.id } }}
+                >
+                  <a>Edit</a>
+                </Link>,
                 userHasProperRight && <DeleteUserButton id={item.id} />,
               ]}
             >
@@ -40,6 +46,10 @@ class DashBoard extends React.Component<Props> {
                     >
                       {item.role}
                     </span>
+
+                    {this.props.currentUser.email === item.email && (
+                      <span className={`role-badge me`}>ME</span>
+                    )}
                   </span>
                 }
                 description={`${item.id} • ${item.email}`}
@@ -77,6 +87,10 @@ class DashBoard extends React.Component<Props> {
 
           .role-badge.inactive {
             background: #d9d9d9;
+          }
+
+          .role-badge.me {
+            background: #6d3333;
           }
         `}</style>
       </React.Fragment>

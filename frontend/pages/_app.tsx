@@ -32,8 +32,14 @@ class MyApp extends App<Props> {
       }
     }
 
-    if (ctx.pathname === '/dashboard') {
+    if (ctx.pathname === '/dashboard' || ctx.pathname === '/user') {
       if (isEmpty(currentUser)) {
+        redirect(ctx, '/');
+      }
+    }
+
+    if (ctx.pathname === '/user') {
+      if (isEmpty(ctx.query)) {
         redirect(ctx, '/');
       }
     }

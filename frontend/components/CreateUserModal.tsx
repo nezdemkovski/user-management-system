@@ -114,7 +114,9 @@ class CreateUserModalForm extends React.Component<FormComponentProps, State> {
     return (
       <React.Fragment>
         <div className="button-add-user">
-          <Button onClick={this.showModal}>Add new user</Button>
+          <Button type="dashed" onClick={this.showModal}>
+            Add new user
+          </Button>
         </div>
         <Mutation
           mutation={this.CREATE_NEW_USER}

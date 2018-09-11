@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { message, Button } from 'antd';
 import gql from 'graphql-tag';
 import remove from 'lodash/remove';
 import * as React from 'react';
@@ -44,7 +44,15 @@ class DeleteUserButton extends React.Component<Props> {
             return <p>Error :(</p>;
           }
 
-          return <a onClick={() => this.onButtonClick(deleteUser)}>delete</a>;
+          return (
+            <Button
+              type="danger"
+              ghost
+              onClick={() => this.onButtonClick(deleteUser)}
+            >
+              Delete
+            </Button>
+          );
         }}
       </Mutation>
     );

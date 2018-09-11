@@ -20,20 +20,19 @@ const SignInBox = ({ client }) => {
     <Mutation
       mutation={SIGN_IN}
       onCompleted={async data => {
-        // Store the token in cookie
         document.cookie = cookie.serialize('token', data.signInUser.token, {
           maxAge: 30 * 24 * 60 * 60, // 30 days
         });
-        // Force a reload of all the current queries now that the user is
-        // logged in
         try {
           await client.cache.reset();
           redirect({}, '/dashboard');
         } catch (err) {
+          // tslint:disable-next-line:no-console
           console.error(err);
         }
       }}
       onError={error => {
+        // tslint:disable-next-line:no-console
         console.error(error);
       }}
     >
