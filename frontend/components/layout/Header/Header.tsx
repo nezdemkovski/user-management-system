@@ -2,9 +2,11 @@ import { Icon, Layout, Menu } from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 
+import { User } from '../../../pages/dashboard';
+
 interface Props {
   isAuth: boolean;
-  userData: any;
+  userData: User;
   signOut: () => void;
 }
 

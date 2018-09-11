@@ -15,17 +15,18 @@
     "dotenv": "^6.0.0",
     "graphql": "^0.13.2",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.13"
+    "mongoose": "^5.2.14"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.1",
     "@types/dotenv": "^4.0.3",
     "@types/jsonwebtoken": "^7.2.8",
-    "@types/mongoose": "^5.2.11",
+    "@types/mongoose": "^5.2.12",
     "@types/node": "^10.9.4",
+    "aws-lambda": "^0.1.2",
     "graphql-cli": "2.16.7",
     "prettier": "^1.14.2",
-    "serverless": "^1.30.3",
+    "serverless": "^1.31.0",
     "serverless-dotenv-plugin": "^1.2.0",
     "serverless-offline": "^3.25.11",
     "serverless-plugin-typescript": "^1.1.5",

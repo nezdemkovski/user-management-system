@@ -1,4 +1,4 @@
-import { message, Alert, Button, Form, Input, Modal, Radio } from 'antd';
+import { message, Alert, Button, Form, Input, Radio } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import gql from 'graphql-tag';
 import * as React from 'react';
@@ -59,8 +59,17 @@ const UPDATE_USER = gql`
   ${USER_FRAGMENT}
 `;
 
+const UPDATE_USER_PASSWORD = gql`
+  mutation updateUser($id: ID!, $password: String!) {
+    updateUser(id: $id, update: { password: $password }) {
+      ...UserData
+    }
+  }
+  ${USER_FRAGMENT}
+`;
+
 class EditUserPage extends React.Component<Props> {
-  public handleSubmit = (e, updateUser) => {
+  public onUpdateUserSubmit = (e, updateUser) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
@@ -69,7 +78,7 @@ class EditUserPage extends React.Component<Props> {
         });
 
         if (updatedUser) {
-          message.success('User successfully updated');
+          message.success('Successfully updated');
         }
       }
     });
@@ -86,7 +95,7 @@ class EditUserPage extends React.Component<Props> {
         <Mutation mutation={UPDATE_USER}>
           {(updateUser, { error }) => {
             return (
-              <Form onSubmit={e => this.handleSubmit(e, updateUser)}>
+              <Form onSubmit={e => this.onUpdateUserSubmit(e, updateUser)}>
                 {error && (
                   <Alert
                     className="error-alert"
@@ -96,6 +105,9 @@ class EditUserPage extends React.Component<Props> {
                   />
                 )}
 
+                <p>
+                  <b>User info</b>
+                </p>
                 <Form.Item {...formItemLayout} label={<span>First Name</span>}>
                   {getFieldDecorator('firstName', {
                     initialValue: data.firstName,
@@ -164,14 +176,64 @@ class EditUserPage extends React.Component<Props> {
                 </Form.Item>
 
                 <Form.Item {...tailFormItemLayout}>
-                  <Button type="primary" htmlType="submit">
-                    Update
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    disabled={userHasNoEditRight}
+                  >
+                    Update User Info
                   </Button>
                 </Form.Item>
               </Form>
             );
           }}
         </Mutation>
+
+        {(currentUser.role === 'ADMIN' ||
+          currentUser.role === 'DEVELOPER' ||
+          (currentUser.role === 'EDITOR' && currentUser.id === data.id)) && (
+          <Mutation mutation={UPDATE_USER_PASSWORD}>
+            {(updateUser, { error }) => {
+              return (
+                <Form onSubmit={e => this.onUpdateUserSubmit(e, updateUser)}>
+                  {error && (
+                    <Alert
+                      className="error-alert"
+                      message="Error"
+                      description={error.message}
+                      type="error"
+                    />
+                  )}
+
+                  <p>
+                    <b>Change password</b>
+                  </p>
+                  <Form.Item {...formItemLayout} label="Password">
+                    {getFieldDecorator('password', {
+                      rules: [
+                        {
+                          message: 'Please input your password!',
+                        },
+                      ],
+                    })(<Input type="password" />)}
+                  </Form.Item>
+
+                  <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary" htmlType="submit">
+                      Update Password
+                    </Button>
+                  </Form.Item>
+                </Form>
+              );
+            }}
+          </Mutation>
+        )}
+
+        <style jsx global>{`
+          .error-alert {
+            margin-bottom: 20px;
+          }
+        `}</style>
       </React.Fragment>
     );
   }
@@ -179,15 +241,3 @@ class EditUserPage extends React.Component<Props> {
 
 const UserPage = Form.create()(EditUserPage);
 export default UserPage;
-
-{
-  /* <Form.Item {...formItemLayout} label="Password">
-{getFieldDecorator('password', {
-  rules: [
-    {
-      message: 'Please input your password!',
-    },
-  ],
-})(<Input type="password" />)}
-</Form.Item> */
-}

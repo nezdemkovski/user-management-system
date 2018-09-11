@@ -19,7 +19,7 @@ interface Props {
   isAuth: boolean;
   userData: any;
   apolloClient: any;
-  children: React.ReactNode;
+  children: JSX.Element;
 }
 
 class MyApp extends App<Props> {

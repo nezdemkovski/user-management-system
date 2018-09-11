@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 
 import UserPage from '../components/userPage/UserPage';
-import { User, USER_FRAGMENT } from '../pages/dashboard';
+import { User, USER_FRAGMENT } from './dashboard';
 
 interface Props {
   router: WithRouterProps['router'];

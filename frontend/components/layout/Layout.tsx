@@ -1,13 +1,13 @@
 import { Layout } from 'antd';
-import { withRouter } from 'next/router';
 import * as React from 'react';
 
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import { User } from '../../pages/dashboard';
 
 interface Props {
   isAuth: boolean;
-  userData: any;
+  userData: User;
   signOut: () => void;
   children: JSX.Element;
 }
@@ -47,4 +47,4 @@ class LayoutComponent extends React.Component<Props> {
   }
 }
 
-export default withRouter(LayoutComponent);
+export default LayoutComponent;

@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLNonNull } from 'graphql';
 
 import { Context } from '../../../graphql';
 import {
@@ -19,7 +19,7 @@ export default {
   type: GraphQLUser,
   args: {
     id: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: new GraphQLNonNull(GraphQLID),
     },
   },
   resolve: async (

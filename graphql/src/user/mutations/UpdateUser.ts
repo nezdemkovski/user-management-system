@@ -88,18 +88,22 @@ export default {
         );
       }
 
-      return models.User.findOneAndUpdate(
-        { _id: args.id },
-        {
-          ...(args.update.password && {
-            password: await bcrypt.hash(args.update.password, 10),
-          }),
-        },
-        { new: true },
-        () => {
-          db.close();
-        },
-      );
+      if (userId === args.id) {
+        return models.User.findOneAndUpdate(
+          { _id: args.id },
+          {
+            ...(args.update.password && {
+              password: await bcrypt.hash(args.update.password, 10),
+            }),
+          },
+          { new: true },
+          () => {
+            db.close();
+          },
+        );
+      }
+
+      throw new Error('You cannot edit that fields!');
     }
 
     throw new Error('You must update at least one field!');

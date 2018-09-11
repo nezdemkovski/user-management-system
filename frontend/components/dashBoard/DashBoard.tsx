@@ -5,10 +5,11 @@ import * as React from 'react';
 import CreateUserModal from './CreateUserModal';
 import DeleteUserButton from './DeleteUserButton';
 import Switch from './Switch';
+import { User } from '../../pages/dashboard';
 
 interface Props {
-  data: any;
-  currentUser: any;
+  data: User;
+  currentUser: User;
 }
 
 class DashBoard extends React.Component<Props> {
@@ -31,7 +32,9 @@ class DashBoard extends React.Component<Props> {
                 >
                   <a>Edit</a>
                 </Link>,
-                userHasProperRight && <DeleteUserButton id={item.id} />,
+                this.props.currentUser.role === 'ADMIN' && (
+                  <DeleteUserButton id={item.id} />
+                ),
               ]}
             >
               <List.Item.Meta
@@ -54,7 +57,9 @@ class DashBoard extends React.Component<Props> {
                 }
                 description={`${item.id} • ${item.email}`}
               />
-              <Switch userId={item.id} isActive={item.active} />
+              {userHasProperRight && (
+                <Switch userId={item.id} isActive={item.active} />
+              )}
             </List.Item>
           )}
         />

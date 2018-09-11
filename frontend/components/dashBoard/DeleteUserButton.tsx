@@ -4,7 +4,7 @@ import remove from 'lodash/remove';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 
-import { GET_USER_LIST } from '../pages/dashboard';
+import { GET_USER_LIST } from '../../pages/dashboard';
 
 interface Props {
   id: string;

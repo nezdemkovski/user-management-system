@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 
-import { USER_FRAGMENT } from '../pages/dashboard';
+import { USER_FRAGMENT } from '../../pages/dashboard';
 
 interface Props {
   userId: string;

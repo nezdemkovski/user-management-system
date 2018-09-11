@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 
-import DashBoard from '../components/DashBoard';
+import DashBoard from '../components/dashBoard/DashBoard';
 
 export interface User {
   id: string;

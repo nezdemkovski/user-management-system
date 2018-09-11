@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 
-import { GET_USER_LIST, USER_FRAGMENT } from '../pages/dashboard';
+import { GET_USER_LIST, USER_FRAGMENT } from '../../pages/dashboard';
 
 interface State {
   confirmDirty: boolean;
@@ -247,6 +247,7 @@ class CreateUserModalForm extends React.Component<FormComponentProps, State> {
             );
           }}
         </Mutation>
+
         <style jsx global>{`
           .button-add-user {
             text-align: center;
