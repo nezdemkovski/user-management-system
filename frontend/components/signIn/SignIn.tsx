@@ -99,7 +99,7 @@ class SignIn extends React.Component<WithApolloClient<FormComponentProps>> {
                     prefix={
                       <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                     }
-                    placeholder="email"
+                    placeholder="Email"
                   />,
                 )}
               </Form.Item>
