@@ -13,11 +13,13 @@ GRAPHQL_ENDPOINT_URL=
 ## How to run it
 
 ```bash
-npm install
-npm run dev
+$ npm install
+$ npm run dev
+
 # or
-yarn
-yarn dev
+
+$ yarn
+$ yarn dev
 ```
 
 ## How to deploy on AWS Elastic Beanstalk
@@ -35,3 +37,8 @@ Once the init command successfully finishes, notice there is a new directory in 
 It should take a few minutes for your application to be created.
 
 🎉🎉🎉 Check you AWS account and make sure everything went well.
+
+
+## License
+
+MIT 2018 Yuri Yakovlev

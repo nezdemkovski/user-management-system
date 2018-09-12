@@ -1,8 +1,55 @@
 # GraphQL Server
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/yakovlevyuri/react-graphql-starter.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.com/yakovlevyuri/react-graphql-starter.svg?branch=master)](https://travis-ci.com/yakovlevyuri/react-graphql-starter)
+## Before you start
+First rename `.env-sample` file to `.env`. It contains all default values for proper work on your local machine.
+```
+MONGO_USERNAME=
+MONGO_PASSWORD=
+MONGO_URL=
+MONGO_DB_NAME=
 
+# JWT Secret passphrase
+APP_SECRET= 
+```
+
+## How to run it
+
+```bash
+$ npm install
+$ npm run start
+
+# or
+
+$ yarn
+$ yarn start
+```
+
+## How to deploy on AWS Lambda
+
+Easy Peasy. Serverless framework takes care of the whole deployment process. 
+Just make sure you provided all necessary credentials to the Serverless first.
+After that you are ready to deploy.
+
+```bash
+$ yarn deploy
+```
+It should take a few minutes for your application to be deployed.
+
+## How to run tests
+
+```bash
+$ npm run test
+
+# or
+
+$ yarn test
+```
+
+## GraphQL Server API
+
+### Queries
+
+Get user info by `ID`:
 ```
 query user {
   user(id: "5b8ee9f7f996660789b28360") {
@@ -16,6 +63,7 @@ query user {
 }
 ```
 
+Get the list of all available users:
 ```
 query users {
   users {
@@ -29,6 +77,7 @@ query users {
 }
 ```
 
+Get current user by providing an `Authorization` token in the request header (Example: `Bearer eyJhbGciOiJIUzI1NkIsInR5cCI6IkaXVCJ9.eyJ1c2VySWqiOiI1Y...`):
 ```
 query currentUser {
   currentUser {
@@ -42,6 +91,9 @@ query currentUser {
 }
 ```
 
+### Mutations
+
+Sign In using email and password:
 ```
 mutation signInUser {
   signInUser(email: "test@test.comm", password: "testpass") {
@@ -53,6 +105,7 @@ mutation signInUser {
 }
 ```
 
+Create a new user:
 ```
 mutation createUser {
   createUser(
@@ -72,6 +125,7 @@ mutation createUser {
 }
 ```
 
+Update User info:
 ```
 mutation updateUser {
   updateUser(
@@ -94,6 +148,7 @@ mutation updateUser {
 }
 ```
 
+Delete User by `ID`:
 ```
 mutation deleteUser {
   deleteUser(id: "5b8ee99e4759280767ee0725") {
@@ -102,3 +157,7 @@ mutation deleteUser {
   }
 }
 ```
+
+## License
+
+MIT 2018 Yuri Yakovlev
