@@ -19,7 +19,7 @@ export default {
   resolve: async (
     _: any,
     { id }: Args,
-    { apiToken, models, db }: Context,
+    { apiToken, models }: Context,
   ): Promise<UserModel> => {
     const userId = getUserId(apiToken);
     const userRole = await getUserRole(userId, models);
@@ -29,8 +29,6 @@ export default {
       if (!deletedUser) {
         throw new Error('No such user found!');
       }
-
-      db.close();
 
       return deletedUser;
     }

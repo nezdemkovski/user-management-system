@@ -82,9 +82,6 @@ export default {
             }),
           },
           { new: true },
-          () => {
-            db.close();
-          },
         );
       }
 
@@ -97,9 +94,6 @@ export default {
             }),
           },
           { new: true },
-          () => {
-            db.close();
-          },
         );
       }
 

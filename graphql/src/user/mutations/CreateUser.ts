@@ -42,7 +42,7 @@ export default {
   resolve: async (
     _: any,
     args: Args,
-    { apiToken, models, db }: Context,
+    { apiToken, models }: Context,
   ): Promise<AuthPayload> => {
     const userId = getUserId(apiToken);
     const userRole = await getUserRole(userId, models);
@@ -58,8 +58,6 @@ export default {
         password: await bcrypt.hash(args.password, 10),
         active: true,
       }).save();
-
-      db.close();
 
       return {
         token: jwt.sign({ userId: newUser.id }, APP_SECRET),

@@ -9,10 +9,8 @@ export default {
   resolve: async (
     _: any,
     args: any,
-    { models, db }: Context,
+    { models }: Context,
   ): Promise<UserModel[]> => {
-    return models.User.find({}, () => {
-      db.close();
-    });
+    return models.User.find();
   },
 };

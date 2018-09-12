@@ -25,10 +25,8 @@ export default {
   resolve: async (
     _: any,
     { id }: Args,
-    { models, db }: Context,
+    { models }: Context,
   ): Promise<UserModel> => {
-    return models.User.findOne({ _id: id }, () => {
-      db.close();
-    });
+    return models.User.findOne({ _id: id });
   },
 };
