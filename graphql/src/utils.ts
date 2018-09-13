@@ -1,12 +1,11 @@
 import * as jwt from 'jsonwebtoken';
 
-import { APP_SECRET } from './config';
 import { UserRole } from './user/outputs/UserRole';
 
 export function getUserId(token: string): string {
   if (token) {
     const apiToken = token.replace('Bearer ', '');
-    const { userId } = jwt.verify(apiToken, APP_SECRET) as {
+    const { userId } = jwt.verify(apiToken, process.env.APP_SECRET) as {
       userId: string;
     };
     return userId;

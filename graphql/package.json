@@ -20,16 +20,19 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.1",
     "@types/dotenv": "^4.0.3",
+    "@types/jest": "^23.3.2",
     "@types/jsonwebtoken": "^7.2.8",
     "@types/mongoose": "^5.2.12",
     "@types/node": "^10.9.4",
     "aws-lambda": "^0.1.2",
     "graphql-cli": "2.16.7",
+    "jest": "^23.6.0",
     "prettier": "^1.14.2",
     "serverless": "^1.31.0",
     "serverless-dotenv-plugin": "^1.2.0",
     "serverless-offline": "^3.25.11",
     "serverless-plugin-typescript": "^1.1.5",
+    "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.0.3"
@@ -40,6 +43,8 @@
     "prettier": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "lint:fix": "tslint -c tslint.json -p tsconfig.json --fix",
-    "test-ci": "yarn lint"
+    "test-ci": "yarn lint",
+    "test": "jest --coverage --detectOpenHandles --forceExit",
+    "test:watch": "jest --watch --coverage"
   }
 }
