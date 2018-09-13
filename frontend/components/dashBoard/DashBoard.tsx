@@ -2,10 +2,10 @@ import { Avatar, List } from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 
+import { User } from '../../pages/dashboard';
 import CreateUserModal from './CreateUserModal';
 import DeleteUserButton from './DeleteUserButton';
 import Switch from './Switch';
-import { User } from '../../pages/dashboard';
 
 interface Props {
   data: User;

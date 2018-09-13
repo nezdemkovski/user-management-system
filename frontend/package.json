@@ -13,6 +13,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "tslint -c tslint.json -p tsconfig.json",
+    "test-ci": "yarn lint",
     "prettier": "prettier --write '{components,lib,pages}/**/*.tsx'"
   },
   "dependencies": {

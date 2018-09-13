@@ -1,0 +1,42 @@
+
+language: node_js
+node_js:
+- "node"
+
+cache:
+  yarn: true
+  directories:
+  - node_modules
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+
+stages:
+- frontend-test
+- frontend-build
+- graphql-test
+
+jobs:
+  include:
+  - stage: frontend-test
+    script:
+    - cd frontend
+    - yarn
+    - yarn test-ci
+
+  - stage: frontend-build
+    script:
+    - cd frontend
+    - yarn
+    - yarn build
+
+  - stage: graphql-test
+    script:
+    - cd graphql
+    - yarn
+    - yarn test-ci
+
+
+

@@ -43,7 +43,7 @@
     "prettier": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "lint:fix": "tslint -c tslint.json -p tsconfig.json --fix",
-    "test-ci": "yarn lint",
+    "test-ci": "yarn lint && yarn test",
     "test": "jest --coverage --detectOpenHandles --forceExit",
     "test:watch": "jest --watch --coverage"
   }

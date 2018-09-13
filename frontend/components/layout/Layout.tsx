@@ -1,9 +1,9 @@
 import { Layout } from 'antd';
 import * as React from 'react';
 
+import { User } from '../../pages/dashboard';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
-import { User } from '../../pages/dashboard';
 
 interface Props {
   isAuth: boolean;
