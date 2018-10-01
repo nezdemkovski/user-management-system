@@ -17,35 +17,35 @@
     "prettier": "prettier --write '{components,lib,pages}/**/*.tsx'"
   },
   "dependencies": {
-    "@zeit/next-css": "^0.2.1-canary.2",
-    "@zeit/next-typescript": "^1.1.1-canary.3",
-    "antd": "^3.9.2",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "antd": "^3.9.3",
     "apollo-boost": "^0.1.16",
-    "apollo-link-context": "^1.0.8",
-    "apollo-link-http": "^1.5.4",
+    "apollo-link-context": "^1.0.9",
+    "apollo-link-http": "^1.5.5",
     "cookie": "^0.3.1",
     "dotenv-webpack": "^1.5.7",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "isomorphic-unfetch": "^2.1.1",
+    "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.11",
-    "next": "^7.0.0-canary.16",
+    "next": "^7.0.1",
     "nprogress": "^0.2.0",
-    "react": "^16.5.0",
-    "react-apollo": "^2.1.11",
-    "react-dom": "^16.5.0"
+    "react": "^16.5.2",
+    "react-apollo": "^2.2.3",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@types/cookie": "^0.3.1",
     "@types/lodash": "^4.14.116",
-    "@types/next": "^6.1.4",
+    "@types/next": "^7.0.0",
     "@types/nprogress": "^0.0.29",
     "@types/react": "^16.4.14",
     "@types/styled-jsx": "^2.2.5",
-    "babel-plugin-import": "^1.8.0",
-    "prettier": "^1.14.2",
+    "babel-plugin-import": "^1.9.1",
+    "prettier": "^1.14.3",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.1"
   }
 }
